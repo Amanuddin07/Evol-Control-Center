@@ -1,0 +1,235 @@
+{
+  "activeMode": "work",
+  "samplingIntervalMs": 2000,
+  "loggingIntervalSec": 5,
+  "loggingDirectory": "logs/",
+  "launchWithWindows": false,
+  "minimizeToTray": true,
+  "alwaysOnTopOverlay": false,
+  "autoUpdateCheck": true,
+  "autoGameDetection": true,
+  "detectedGamesList": [
+    "cs2.exe",
+    "valorant.exe",
+    "cyberpunk2077.exe",
+    "eldenring.exe",
+    "gta5.exe"
+  ],
+  "agentUrl": "http://127.0.0.1:17830",
+  "profiles": {
+    "gaming": {
+      "id": "gaming",
+      "label": "Gaming Mode",
+      "description": "Sustained CPU/GPU boost, highest supported display refresh rate, and proactive cooling.",
+      "windowsPowerPlan": "High Performance",
+      "cpuBoostPolicy": "Aggressive",
+      "pl1Watts": 45,
+      "pl2Watts": 95,
+      "maxCpuTempC": 92,
+      "gpuPerformanceMode": "Maximum Performance",
+      "gpuPowerLimitWatts": 100,
+      "targetRefreshRateHz": 144,
+      "fanPreset": "performance",
+      "brightnessPct": 90,
+      "autoGameDetection": true
+    },
+    "work": {
+      "id": "work",
+      "label": "Work Mode",
+      "description": "Balanced acoustics and sustained single/multi-core responsiveness for productivity.",
+      "windowsPowerPlan": "Balanced",
+      "cpuBoostPolicy": "Efficient Enabled",
+      "pl1Watts": 35,
+      "pl2Watts": 65,
+      "maxCpuTempC": 88,
+      "gpuPerformanceMode": "Optimal Power",
+      "gpuPowerLimitWatts": 75,
+      "targetRefreshRateHz": 144,
+      "fanPreset": "balanced",
+      "brightnessPct": 75,
+      "autoGameDetection": true
+    },
+    "battery": {
+      "id": "battery",
+      "label": "Battery Saver Mode",
+      "description": "Maximum runtime efficiency with constrained boost, 60 Hz panel refresh, and quiet fans.",
+      "windowsPowerPlan": "Power Saver",
+      "cpuBoostPolicy": "Disabled",
+      "pl1Watts": 20,
+      "pl2Watts": 35,
+      "maxCpuTempC": 82,
+      "gpuPerformanceMode": "Adaptive",
+      "gpuPowerLimitWatts": 45,
+      "targetRefreshRateHz": 60,
+      "fanPreset": "silent",
+      "brightnessPct": 50,
+      "autoGameDetection": false
+    }
+  },
+  "fanPreset": "balanced",
+  "cpuFanCurve": [
+    {
+      "tempC": 40,
+      "speedPct": 25
+    },
+    {
+      "tempC": 55,
+      "speedPct": 42
+    },
+    {
+      "tempC": 70,
+      "speedPct": 62
+    },
+    {
+      "tempC": 80,
+      "speedPct": 80
+    },
+    {
+      "tempC": 90,
+      "speedPct": 95
+    }
+  ],
+  "gpuFanCurve": [
+    {
+      "tempC": 40,
+      "speedPct": 25
+    },
+    {
+      "tempC": 55,
+      "speedPct": 42
+    },
+    {
+      "tempC": 70,
+      "speedPct": 62
+    },
+    {
+      "tempC": 80,
+      "speedPct": 80
+    },
+    {
+      "tempC": 90,
+      "speedPct": 95
+    }
+  ],
+  "thermalThresholds": {
+    "cpuWarningC": 85,
+    "cpuCriticalC": 95,
+    "gpuWarningC": 82,
+    "gpuCriticalC": 89,
+    "ssdWarningC": 68,
+    "lowBatteryPct": 18,
+    "enableNotifications": true
+  },
+  "keyboard": {
+    "backlightEnabled": true,
+    "brightnessPct": 70,
+    "effect": "static",
+    "primaryHex": "#38BDF8",
+    "secondaryHex": "#F97316",
+    "effectSpeed": 50,
+    "macrosEnabled": true,
+    "activeMacroProfile": "Default Productivity",
+    "macros": [
+      {
+        "id": "macro-1",
+        "name": "Switch to Gaming Profile",
+        "triggerKey": "Ctrl+Alt+G",
+        "sequence": [
+          "EVOL:MODE_GAMING"
+        ],
+        "delayMs": 25,
+        "enabled": true
+      },
+      {
+        "id": "macro-2",
+        "name": "Open Performance Overlay",
+        "triggerKey": "Ctrl+Alt+O",
+        "sequence": [
+          "EVOL:TOGGLE_OVERLAY"
+        ],
+        "delayMs": 25,
+        "enabled": true
+      }
+    ]
+  },
+  "display": {
+    "activePreset": "standard",
+    "refreshRateHz": 144,
+    "colorTempK": 6500,
+    "gamma": 1,
+    "contrastPct": 100,
+    "brightnessPct": 75,
+    "rgbGain": {
+      "r": 100,
+      "g": 100,
+      "b": 100
+    }
+  },
+  "power": {
+    "activePlan": "Balanced",
+    "minProcessorPct": 5,
+    "maxProcessorPct": 100,
+    "cpuBoostPolicy": "Efficient Enabled",
+    "pcieLinkPowerManagement": "Moderate",
+    "usbSelectiveSuspend": true,
+    "wirelessPowerMode": "Medium Power Saving",
+    "screenTimeoutMinutes": 10,
+    "sleepTimeoutMinutes": 20,
+    "hibernateEnabled": true,
+    "batteryConservationMode": true
+  },
+  "customPowerProfiles": [],
+  "automationHistory": [
+    {
+      "id": "evt-1795330333997",
+      "timestamp": "2026-11-22T06:52:13.997Z",
+      "action": "Activate Work Mode",
+      "status": "partial",
+      "summary": "Work Mode saved & applied locally (4 Windows-only steps deferred to Windows Agent).",
+      "appliedSteps": [
+        "Saved EVOL profile intent (Work Mode) in persistent configuration",
+        "Updated target fan preset preference (balanced)"
+      ],
+      "skippedSteps": [
+        "Windows PowerCfg & Intel PL1/PL2 Registers: Unavailable on Linux container host. Connect the EVOL Windows .NET 8 Companion Agent to read live hardware sensors.",
+        "NVIDIA NVML / NVAPI Performance Policy: No NVIDIA GPU driver / NVML interface detected in this Linux container.",
+        "Embedded Controller (EC) Direct Fan Duty: Direct EC fan curve control requires a signed Colorful/ODM WMI driver on Windows; unsafe raw port writes are blocked.",
+        "DXGI / User32 Refresh Rate Switch: Unavailable on Linux container host. Connect the EVOL Windows .NET 8 Companion Agent to read live hardware sensors."
+      ]
+    },
+    {
+      "id": "evt-1795330262129",
+      "timestamp": "2026-11-22T06:51:02.129Z",
+      "action": "Activate Gaming Mode",
+      "status": "partial",
+      "summary": "Gaming Mode saved & applied locally (4 Windows-only steps deferred to Windows Agent).",
+      "appliedSteps": [
+        "Saved EVOL profile intent (Gaming Mode) in persistent configuration",
+        "Updated target fan preset preference (performance)"
+      ],
+      "skippedSteps": [
+        "Windows PowerCfg & Intel PL1/PL2 Registers: Unavailable on Linux container host. Connect the EVOL Windows .NET 8 Companion Agent to read live hardware sensors.",
+        "NVIDIA NVML / NVAPI Performance Policy: No NVIDIA GPU driver / NVML interface detected in this Linux container.",
+        "Embedded Controller (EC) Direct Fan Duty: Direct EC fan curve control requires a signed Colorful/ODM WMI driver on Windows; unsafe raw port writes are blocked.",
+        "DXGI / User32 Refresh Rate Switch: Unavailable on Linux container host. Connect the EVOL Windows .NET 8 Companion Agent to read live hardware sensors."
+      ]
+    },
+    {
+      "id": "evt-1795330213009",
+      "timestamp": "2026-11-22T06:50:13.009Z",
+      "action": "Activate Gaming Mode",
+      "status": "partial",
+      "summary": "Gaming Mode saved & applied locally (4 Windows-only steps deferred to Windows Agent).",
+      "appliedSteps": [
+        "Saved EVOL profile intent (Gaming Mode) in persistent configuration",
+        "Updated target fan preset preference (performance)"
+      ],
+      "skippedSteps": [
+        "Windows PowerCfg & Intel PL1/PL2 Registers: Unavailable on Linux container host. Connect the EVOL Windows .NET 8 Companion Agent to read live hardware sensors.",
+        "NVIDIA NVML / NVAPI Performance Policy: No NVIDIA GPU driver / NVML interface detected in this Linux container.",
+        "Embedded Controller (EC) Direct Fan Duty: Direct EC fan curve control requires a signed Colorful/ODM WMI driver on Windows; unsafe raw port writes are blocked.",
+        "DXGI / User32 Refresh Rate Switch: Unavailable on Linux container host. Connect the EVOL Windows .NET 8 Companion Agent to read live hardware sensors."
+      ]
+    }
+  ]
+}

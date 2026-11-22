@@ -1,0 +1,44 @@
+{
+  "ActiveMode": "work",
+  "FirstRunCompleted": false,
+  "LaunchWithWindows": false,
+  "MinimizeToTray": true,
+  "BackgroundLoggingEnabled": false,
+  "LoggingIntervalSeconds": 5,
+  "SamplingIntervalMs": 2000,
+  "FanPreset": "balanced",
+  "CpuWarningC": 85,
+  "CpuCriticalC": 95,
+  "GpuWarningC": 82,
+  "GpuCriticalC": 89,
+  "DisplayRefreshHz": 144,
+  "Profiles": {
+    "gaming": {
+      "Name": "Gaming Mode",
+      "WindowsPowerPlan": "High Performance",
+      "CpuBoostPolicy": "Aggressive",
+      "Pl1Watts": 45,
+      "Pl2Watts": 95,
+      "TargetRefreshHz": 144,
+      "FanPreset": "performance"
+    },
+    "work": {
+      "Name": "Work Mode",
+      "WindowsPowerPlan": "Balanced",
+      "CpuBoostPolicy": "Efficient Enabled",
+      "Pl1Watts": 35,
+      "Pl2Watts": 65,
+      "TargetRefreshHz": 144,
+      "FanPreset": "balanced"
+    },
+    "battery": {
+      "Name": "Battery Saver Mode",
+      "WindowsPowerPlan": "Power Saver",
+      "CpuBoostPolicy": "Disabled",
+      "Pl1Watts": 20,
+      "Pl2Watts": 35,
+      "TargetRefreshHz": 60,
+      "FanPreset": "silent"
+    }
+  }
+}

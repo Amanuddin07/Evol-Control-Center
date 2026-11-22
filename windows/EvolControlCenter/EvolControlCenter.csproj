@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyName>EVOL-Control-Center</AssemblyName>
+    <RootNamespace>EvolControlCenter</RootNamespace>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Company>EVOL Control Center Project</Company>
+    <Product>EVOL CONTROL CENTER</Product>
+    <Description>Hardware monitoring, thermal management, and performance control suite for the Colorful Evol P15 2024 India Edition.</Description>
+    <Copyright>Copyright (c) 2026 EVOL Control Center Project</Copyright>
+    <RuntimeIdentifiers>win-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibreHardwareMonitorLib" Version="0.9.3" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="8.0.0" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="default-config.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="README.md" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="DEPENDENCIES.md" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="HARDWARE_COMPATIBILITY_REPORT.md" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="BUILD_INSTRUCTIONS.md" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

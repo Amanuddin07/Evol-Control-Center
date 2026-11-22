@@ -1,0 +1,10 @@
+<Application x:Class="EvolControlCenter.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+  <Application.Resources>
+    <SolidColorBrush x:Key="ObsidianBg" Color="#090B0F" />
+    <SolidColorBrush x:Key="SurfaceBg" Color="#11151C" />
+    <SolidColorBrush x:Key="BorderHairline" Color="#232A36" />
+  </Application.Resources>
+</Application>
