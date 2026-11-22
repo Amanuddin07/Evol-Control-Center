@@ -27,10 +27,11 @@ jobs:
           New-Item -ItemType Directory -Force -Path $outDir | Out-Null
           dotnet restore "$projDir/EvolControlCenter.csproj"
           dotnet publish "$projDir/EvolControlCenter.csproj" -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o $outDir
-          Get-ChildItem -Path $outDir -File | ForEach-Object {
+          $lines = Get-ChildItem -Path $outDir -File | Where-Object { $_.Name -ne "CHECKSUMS.txt" } | ForEach-Object {
             $hash = (Get-FileHash -Path $_.FullName -Algorithm SHA256).Hash.ToLower()
             "$hash  $($_.Name)"
-          } | Out-File -FilePath "$outDir/CHECKSUMS.txt" -Encoding utf8
+          }
+          [System.IO.File]::WriteAllLines("$outDir/CHECKSUMS.txt", $lines)
 
       - name: Build Windows installer with Inno Setup
         shell: pwsh
