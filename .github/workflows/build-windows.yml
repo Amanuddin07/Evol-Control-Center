@@ -1,0 +1,74 @@
+name: Build Windows Desktop App & Installer
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Locate EvolControlCenter directory
+        id: paths
+        shell: pwsh
+        run: |
+          if (Test-Path "windows/EvolControlCenter/build.ps1") {
+            "base=windows/EvolControlCenter" >> $env:GITHUB_OUTPUT
+          } elseif (Test-Path "evol-control-center/windows/EvolControlCenter/build.ps1") {
+            "base=evol-control-center/windows/EvolControlCenter" >> $env:GITHUB_OUTPUT
+          } else {
+            throw "Could not find windows/EvolControlCenter/build.ps1 in the repository."
+          }
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install Inno Setup 6
+        shell: pwsh
+        run: |
+          choco install innosetup -y --no-progress
+
+      - name: Build EVOL-Control-Center.exe and EVOL-Control-Center-Setup.exe
+        shell: pwsh
+        run: |
+          $script = Join-Path "${{ steps.paths.outputs.base }}" "build.ps1"
+          & $script -Configuration Release -Runtime win-x64
+
+      - name: Verify Build Outputs
+        shell: pwsh
+        run: |
+          $dist = "${{ steps.paths.outputs.base }}/dist"
+          $exe = "$dist/EVOL-Control-Center.exe"
+          $setup = "$dist/EVOL-Control-Center-Setup.exe"
+          if (-not (Test-Path $exe) -or (Get-Item $exe).Length -eq 0) { throw "Missing or empty $exe" }
+          if (-not (Test-Path $setup) -or (Get-Item $setup).Length -eq 0) { throw "Missing or empty $setup" }
+          Get-Content "$dist/CHECKSUMS.txt"
+
+      - name: Upload Portable Executable Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EVOL-Control-Center-Portable
+          if-no-files-found: error
+          path: |
+            ${{ steps.paths.outputs.base }}/dist/EVOL-Control-Center.exe
+            ${{ steps.paths.outputs.base }}/dist/CHECKSUMS.txt
+            ${{ steps.paths.outputs.base }}/README.md
+            ${{ steps.paths.outputs.base }}/HARDWARE_COMPATIBILITY_REPORT.md
+
+      - name: Upload Windows Installer Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EVOL-Control-Center-Setup
+          if-no-files-found: error
+          path: |
+            ${{ steps.paths.outputs.base }}/dist/EVOL-Control-Center-Setup.exe
+            ${{ steps.paths.outputs.base }}/dist/CHECKSUMS.txt
